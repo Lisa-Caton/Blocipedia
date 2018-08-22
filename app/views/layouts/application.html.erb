@@ -5,37 +5,41 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
 
-  <% if notice %>
-    <p class="alert alert-success"><%= notice %></p>
-  <% end %>
-  <% if alert %>
-    <p class="alert alert-danger"><%= alert %></p>
-  <% end %>
+    <div class="container">
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
 
-  <%= yield %>
+      <ul class="nav nav-tabs">
+        <li><%= link_to 'Blocipedia', root_path %></li>
+        <li><%= link_to 'Wikis', wikis_path %></li>
+        <div class="pull-right user-info">
+          <% if user_signed_in? %>
 
-    <!-- yield will render the template of the current controller/action -->
-    <!-- So if you're on the "cars/show" page, it will render "views/cars/show.html.erb" << For example! -->
+            Signed in as: <strong><%= current_user.email %></strong> |
+            <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> -
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+          <% else %>
+            <%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-link'  %> -
+            <%= link_to "Sign In", new_user_session_path, :class => 'navbar-link'  %>
+          <% end %>
+        </div>
+      </ul>
 
-   <% if user_signed_in? %>
+      <%= yield %>
+      <!-- yield will render the template of the current controller/action -->
+      <!-- So if you're on the "cars/show" page, it will render "views/cars/show.html.erb" << For example! -->
 
-      Signed in as: <strong><%= current_user.email %></strong> |
-      <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> -
-      <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-
-    <% else %>
-
-      <%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-link'  %> -
-      <%= link_to "Sign In", new_user_session_path, :class => 'navbar-link'  %>
-
-    <% end %>
-
-
+    </div><!--/end container-->
   </body>
 </html>

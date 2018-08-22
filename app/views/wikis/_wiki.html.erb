@@ -1,0 +1,16 @@
+
+  <div class="media">
+   <div class="media-body">
+     <h4 class="media-heading" style="display:inline-block"><%= link_to wiki.title, wiki %></h4> | <small>Testing Seeding-Data</small> | <small>Edit</small>
+     <br>
+     <small>
+       <%= wiki.body %>
+     </small>
+     <br><br>
+     <h4 class="media-heading" style="display:inline-block"><%= link_to 'Wiki Here!', wiki %></h4> | <small><%= link_to 'Edit', edit_wiki_path, (@wiki) %></small>
+     <br>
+     <small>
+       This is the wiki history on this one item!
+     </small>
+   </div>
+ </div>

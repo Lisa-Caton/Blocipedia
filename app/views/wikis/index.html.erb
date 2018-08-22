@@ -1,0 +1,17 @@
+<h1>Wikis#index</h1>
+ 
+ <div class="row">
+   <div class="col-md-8">
+     <% @wikis.each do |wiki| %>
+
+
+      <!-- Renders the partial! -->
+      <%= render "wiki", wiki: wiki %>
+
+
+     <% end %>
+
+    </div>
+    <div class="col-md-4">
+    </div>
+ </div>
