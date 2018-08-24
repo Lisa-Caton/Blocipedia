@@ -1,14 +1,12 @@
+
 <div class="media">
   <div class="media-body">
   <h4 class="media-heading" style="display:inline-block">
-    <%= wiki.title %></h4> 
-    | <small><%= link_to 'Show', wiki_path(wiki.id) %></small>
-    | <small><%= link_to 'Edit', edit_wiki_path(wiki.id) %></small>
-
-    | <small><%= link_to 'Destroy', wiki_path(wiki.id),
+    <%= wiki.title %></h4>
+     <small><%= link_to 'Show', wiki_path(wiki.id) if policy(wiki).show? %></small>
+     <small><%= link_to 'Edit', edit_wiki_path(wiki.id) if policy(wiki).edit? %></small>
+     <small><%= link_to 'Destroy', wiki_path(wiki.id),
       method: :delete,
-      data: { confirm: 'Are you sure you want to delete this wiki?' }
-     %></small>
-
+      data: { confirm: 'Are you sure you want to delete this wiki?' } if policy(wiki).destroy? %></small>
   </div>
 </div>

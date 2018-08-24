@@ -17,11 +17,17 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.user-info {padding: 10px 15px;}
 
-.jumbotron {margin-top: 20px;}
-
-.f1 {padding: 10px 15px;}
-
+/* Body */
+.f1 {padding: 30px 15px;}
 .f1-new,
-.f1-edit {padding: 30px 15px 10px};
+.f1-edit {padding: 30px 15px 10px;}
+.f1 h1 {margin-top: 0; margin-bottom: 30px;}
+
+/* Welcome */
+.jumbotron {margin-top: 20px;}
+.jumbotron h1, sup {color: lime;}
+h4.media-heading:before {content:'¥'; font-size: 15px; color:lime;}
+
+/* Nav */
+.user-info {padding: 10px 15px;}

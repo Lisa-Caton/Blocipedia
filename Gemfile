@@ -54,3 +54,5 @@ gem 'shoulda'
 gem 'bcrypt'
 
 gem 'bootstrap-sass'
+
+gem 'pundit'

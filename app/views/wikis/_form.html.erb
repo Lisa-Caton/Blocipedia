@@ -15,12 +15,12 @@
 
    <%= form_group_tag(@wiki.errors[:title]) do %>
      <%= f.label :title %>
-     <%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki title" %>
+     <%= f.text_field :title, class: 'form-control', placeholder: "Plant title here" %>
    <% end %>
 
    <%= form_group_tag(@wiki.errors[:body]) do %>
      <%= f.label :body %>
-     <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body" %>
+     <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Plant body here" %>
    <% end %>
 
    <div class="form-group">
