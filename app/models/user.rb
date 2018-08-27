@@ -17,7 +17,7 @@ class User < ApplicationRecord
   private
 
   def set_defaults
-    if self.new_record? 
+    if self.new_record?
       self.role ||= :standard
     end
   end

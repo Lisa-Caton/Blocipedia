@@ -1,11 +1,9 @@
 class ApplicationController < ActionController::Base
   # before_action :authenticate_user!
-  include Pundit
-  protect_from_forgery with: :exception
 
+  include Pundit
   #This will include all the 'pundit' methods
 
-  private
-  
+  protect_from_forgery with: :exception
 
 end

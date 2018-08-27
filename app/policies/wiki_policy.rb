@@ -11,7 +11,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    user.present?
   end
 
   def show?
@@ -19,11 +19,11 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def update?
-     user.standard? || user.admin? || user.premium?
+     user.present?
   end
 
   def destroy?
-    true
+    user.present?
   end
 
 end
