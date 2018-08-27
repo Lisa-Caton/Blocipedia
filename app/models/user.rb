@@ -7,7 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   before_save { self.email = email.downcase }
-  before_save { self.role ||= :member }
+  before_save { self.role ||= :standard }
 
 
   enum role: [:standard, :admin, :premium]
@@ -17,7 +17,7 @@ class User < ApplicationRecord
   private
 
   def set_defaults
-    if self.new_record?
+    if self.new_record? 
       self.role ||= :standard
     end
   end
