@@ -1,9 +1,9 @@
 class ApplicationPolicy
-  attr_reader :user, :wiki
+  attr_reader :user, :record
 
-  def initialize(user, wiki)
+  def initialize(user, record)
     @user = user
-    @wiki = wiki
+    @record = record
   end
 
   def index?
@@ -44,16 +44,4 @@ class ApplicationPolicy
     false
   end
 
-  class Scope
-    attr_reader :user, :scope
-
-    def initialize(user, scope)
-      @user = user
-      @scope = scope
-    end
-
-    def resolve
-      scope.all
-    end
-  end
 end

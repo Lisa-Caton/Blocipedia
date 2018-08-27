@@ -7,6 +7,9 @@ class WikisController < ApplicationController
   # rails s error message = Pundit::AuthorizationNotPerformedError (WikisController): MEANS no1 called pundit's authorize method inside of that action!
   #Took from wikis_controller and placed into application_controller to make sure every single action, in our entire application, is verified for authorization!
 
+
+
+
   def index
     @wikis = Wiki.all
     authorize @wikis
@@ -52,7 +55,7 @@ class WikisController < ApplicationController
     set_wiki
     @wiki.assign_attributes(wiki_params)
 
-    if @wiki.save
+    if @wiki.update(wiki_params)
       flash[:notice] = "Wiki was updated."
       redirect_to [@wiki]
     else
@@ -89,4 +92,13 @@ class WikisController < ApplicationController
     def wiki_params
       params.require(:wiki).permit(:title, :body)
     end
+
+    def authorize_user
+     wiki = Wiki.find(params[:id])
+
+     unless current_user == wiki.user || current_user.admin?
+       flash[:alert] = "You must be an admin to do that."
+       redirect_to [@wiki]
+     end
+   end
 end
