@@ -29,7 +29,7 @@ class ChargesController < ApplicationController
     )
 
     flash[:notice] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
-   redirect_to wikis_path(current_user) # or wherever
+   redirect_to root_path(current_user) # or wherever
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
