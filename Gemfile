@@ -60,3 +60,5 @@ gem 'pundit'
 gem 'faker', '~> 1.9', '>= 1.9.1'
 
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
+gem 'figaro', '~> 1.1', '>= 1.1.1'
