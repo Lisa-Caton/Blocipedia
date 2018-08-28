@@ -6,16 +6,37 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
- require 'random_data'
+#----------------------------------------------------------
+ # require 'random_data'
 
- # Create Wikis
-1.times do
+# Create Wikis
+# 1.times do
+#
+#    Wiki.create!(
+#      title:  RandomData.random_word,
+#      body:   RandomData.random_paragraph
+#    )
+#  end
+#  wikis = Wiki.all
+#
+# puts "#{Wiki.count} wikis created"
+#----------------------------------------------------------
 
-   Wiki.create!(
-     title:  RandomData.random_word,
-     body:   RandomData.random_paragraph
-   )
- end
- wikis = Wiki.all
 
+# Create User
+5.times do
+  User.create([{
+    name: Faker::Name.name,
+  }])
+end
+
+# Create Wikis
+50.times do
+  Wiki.create([{
+    title: Faker::Seinfeld.character,
+    body: Faker::Seinfeld.quote
+  }])
+end
+
+puts "#{User.count} users created"
 puts "#{Wiki.count} wikis created"
