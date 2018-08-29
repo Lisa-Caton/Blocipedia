@@ -30,11 +30,33 @@
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
+  <br>
 
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
 <% end %>
+
+
+
+<% if current_user.standard? %>
+    <h3>Upgrade Your Account</h3>
+    <p>You're currently a <em><%= current_user.role.capitalize %> Member</em>.</p>
+
+    <%= button_to "Upgrade Now", new_charge_path, :class => "btn btn-lg btn-primary", method: :get %>
+
+<% else %>
+
+    <h3>Your Account Status</h3>
+    <p>You're currently a <em><%= current_user.role.capitalize %> Member</em>.</p>
+
+    <%= button_to "Downgrade To Standard", user_premium_to_standard_path(current_user), data: { confirm: 'Your private wikis will become public. Are you sure?' }, method: :post %>
+<% end %>
+
+
+
+
+
 
 <h3>Cancel my account</h3>
 

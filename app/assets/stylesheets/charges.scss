@@ -1,3 +1,37 @@
 // Place all the styles related to the charges controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/* Stripe - charges-page */
+
+.charging-card {
+  background: #047ABE;
+  width: 600px;
+  margin: 0 auto;
+  margin-top: 45px;
+  padding: 50px 40px 40px;
+  vertical-align: middle;
+  position:  relative;
+}
+
+.charging-card label.amount {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  display: inline-block;
+}
+
+.charging-card label.amount:hover {filter: blur(1px)}
+
+.c-1 {
+  font-size: 23px;
+  font-family: sans-serif;
+  text-align: center;
+  color: #fff;
+}
+
+.c-2 {
+  position: absolute;
+  top: -25px;
+  left: 0;
+}

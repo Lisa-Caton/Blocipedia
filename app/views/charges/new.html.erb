@@ -1,26 +1,38 @@
-<!-- <%= form_tag charges_path do %>
-  <article>
-    <% if flash[:error].present? %>
-      <div id="error_explanation">
-        <p><%= flash[:error] %></p>
-      </div>
-    <% end %>
-    <label class="amount">
-      <span>Amount: $5.00</span>
-    </label>
-  </article>
 
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="A month's subscription"
-          data-amount="500"
-          data-locale="auto"></script>
-<% end %> -->
+<%= stylesheet_link_tag "application" %>
+<div class="charging-card">
 
+  <div class="c-1">
+    <%= form_tag charges_path do %>
+    <article>
+      <% if flash[:error].present? %>
+        <div id="error_explanation">
+          <p><%= flash[:error] %></p>
+        </div>
+      <% end %>
+      <label class="amount">
 
-<%= form_tag charges_path do %>
-  <h4>Click the button!</h4>
-  <script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>"
-    data-amount="<%= @stripe_btn_data[:amount] %>"
-    data-description="<%= @stripe_btn_data[:description] %>" ></script>
-<% end %>
+        <% if current_user.standard? %>
+          <span>To obtain <strong>Premium Status</strong>, please pay: $<%= @stripe_btn_data[:amount]/ 100 %>.00</span>
+        <% else %>
+          <span><strong>Thank you</strong> for your payment of: $<%= @stripe_btn_data[:amount]/ 100 %>.00</span>
+        <% end %>
+
+      </label>
+    </article>
+      <% if current_user.standard? %>
+        <script class='stripe-button' src="https://checkout.stripe.com/checkout.js"
+          data-key="<%= @stripe_btn_data[:key] %>"
+          data-amount="<%= @stripe_btn_data[:amount] %>"
+          data-description="<%= @stripe_btn_data[:description] %>" ></script>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="c-2">
+      <%= link_to 'Back', root_path(current_user)%>
+      <% if current_user.premium? %>
+        | <%= link_to 'Downgrade to Standard', edit_user_registration_path%>
+      <% end %>
+    </div>
+</div>
