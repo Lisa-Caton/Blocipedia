@@ -23,6 +23,10 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def destroy?
+    user.admin? if user
+  end
+
+  def new?
     user.present?
   end
 

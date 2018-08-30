@@ -19,6 +19,11 @@ class WikisController < ApplicationController
 
   def show #will automatically be authorized!!
     set_wiki
+
+    if @wiki.private && current_user.standard?
+      flash[:alert] = "You must be a Premium User to view this Wiki."
+      redirect_to root_path
+    end
   end
 
 
@@ -41,10 +46,10 @@ class WikisController < ApplicationController
     authorize @wiki
 
     if @wiki.save
-      flash[:notice] = "Wiki was saved."
+      flash[:notice] = "Your Wiki was published."
       redirect_to [@wiki]
     else
-      flash.now[:alert] = "There was an error saving the wiki. Please try again."
+      flash.now[:alert] = "There was an error creating your Wiki. Please try again."
       render :new
     end
   end
@@ -56,10 +61,10 @@ class WikisController < ApplicationController
     @wiki.assign_attributes(wiki_params)
 
     if @wiki.update(wiki_params)
-      flash[:notice] = "Wiki was updated."
+      flash[:notice] = "Your Wiki was updated."
       redirect_to [@wiki]
     else
-      flash[:error] = "There was an error saving the wiki. Please try again."
+      flash[:error] = "There was an error updating your Wiki. Please try again."
       render :edit
     end
   end
@@ -68,7 +73,13 @@ class WikisController < ApplicationController
 
   def destroy #will automatically be authorized!!
     set_wiki
-    @wiki.destroy
+     if @wiki.destroy
+      flash[:notice] = "Wiki #{@wiki.title} was deleted."
+      redirect_to wikis_path
+    else
+      flash.now[:alert] = "There was a Error deleting your Wiki."
+      render :show
+    end
     redirect_to wikis_path
     #redirecting to index action template "app/views/wikis/index.html.erb"
   end
@@ -90,14 +101,14 @@ class WikisController < ApplicationController
 
 
     def wiki_params
-      params.require(:wiki).permit(:title, :body)
+      params.require(:wiki).permit(:title, :body, :private)
     end
 
     def authorize_user
      wiki = Wiki.find(params[:id])
 
      unless current_user == wiki.user || current_user.admin?
-       flash[:alert] = "You must be an admin to do that."
+       flash[:alert] = "You must be an Admin to do that."
        redirect_to [@wiki]
      end
    end

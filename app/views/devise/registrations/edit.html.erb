@@ -37,8 +37,6 @@
   </div>
 <% end %>
 
-
-
 <% if current_user.standard? %>
     <h3>Upgrade Your Account</h3>
     <p>You're currently a <em><%= current_user.role.capitalize %> Member</em>.</p>
@@ -52,11 +50,6 @@
 
     <%= button_to "Downgrade To Standard", user_premium_to_standard_path(current_user), data: { confirm: 'Your private wikis will become public. Are you sure?' }, method: :post %>
 <% end %>
-
-
-
-
-
 
 <h3>Cancel my account</h3>
 

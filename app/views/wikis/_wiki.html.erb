@@ -2,7 +2,12 @@
 <div class="media">
   <div class="media-body">
   <h4 class="media-heading" style="display:inline-block">
-    <%= wiki.title %></h4>
+    <% if wiki.private? %>
+      <%= link_to wiki.title, wiki, class: "private" %> <small>Private Wiki</small>
+    <% else %>
+      <%= link_to wiki.title, wiki %>
+    <% end %>
+    </h4>
      <small><%= link_to 'Show', wiki_path(wiki.id) if policy(wiki).show? %></small>
      <small><%= link_to 'Edit', edit_wiki_path(wiki.id) if policy(wiki).edit? %></small>
      <small><%= link_to 'Destroy', wiki_path(wiki.id),
