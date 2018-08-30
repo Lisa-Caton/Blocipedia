@@ -19,11 +19,6 @@ class WikisController < ApplicationController
 
   def show #will automatically be authorized!!
     set_wiki
-
-    if @wiki.private && current_user.standard?
-      flash[:alert] = "You must be a Premium User to view this Wiki."
-      redirect_to root_path
-    end
   end
 
 
@@ -74,12 +69,11 @@ class WikisController < ApplicationController
   def destroy #will automatically be authorized!!
     set_wiki
      if @wiki.destroy
-      flash[:notice] = "Wiki #{@wiki.title} was deleted."
-      redirect_to wikis_path
-    else
-      flash.now[:alert] = "There was a Error deleting your Wiki."
-      render :show
-    end
+       flash[:notice] = "Wiki #{@wiki.title} was deleted."
+     else
+       flash.now[:alert] = "There was a Error deleting your Wiki."
+       render :show
+     end
     redirect_to wikis_path
     #redirecting to index action template "app/views/wikis/index.html.erb"
   end

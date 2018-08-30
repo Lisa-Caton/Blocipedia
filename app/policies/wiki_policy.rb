@@ -7,7 +7,7 @@ class WikiPolicy < ApplicationPolicy
  end
 
   def index?
-    true
+    user.present?
   end
 
   def create?
@@ -15,11 +15,11 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    user.present? unless @wiki.private && @user.standard?
   end
 
   def update?
-     user.present?
+    user.present? unless @user.standard?
   end
 
   def destroy?
