@@ -7,4 +7,17 @@
     <small><%= markdown(@wiki.body) %></small>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-12 box-shaded">
+      <h4>Creator</h4>
+      <span class="glyphicon glyphicon-user"></span>
+      <%= @wiki.user.username %>
+
+      <% if @wiki.private? %>
+        <p>&nbsp;</p>
+        <h4>Collaborators</h4>
+        <%= render partial: 'collaborator/view_collaborators', locals: { wiki: @wiki, user: current_user } %>
+      <% end %>
+    </div>
+  </div>
 </div>

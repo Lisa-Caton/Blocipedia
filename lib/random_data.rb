@@ -1,10 +1,15 @@
  module RandomData
+   def self.random_username
+   username = random_word.downcase
+   "#{username}"
+ end
+
    def self.random_paragraph
      sentences = []
      rand(4..6).times do
        sentences << random_sentence
      end
- 
+
      sentences.join(" ")
    end
 
@@ -13,7 +18,7 @@
      rand(3..8).times do
        strings << random_word
      end
- 
+
      sentence = strings.join(" ")
      sentence.capitalize << "."
    end

@@ -1,4 +1,7 @@
 
 <div class="f1-edit">
-  <%= render partial: "form" %>
+  <%= render partial: "form", locals: {wiki: @wiki} %>
+  <% if @wiki.private? && user_is_authorized_for_collaborator_edit? %>
+     <%= render partial: 'collaborator/edit_collaborators', locals: { wiki: @wiki, user: current_user } %>
+   <% end %>
 </div>

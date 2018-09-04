@@ -23,7 +23,7 @@
      <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Plant body here" %>
    <% end %>
 
-   <% if current_user.premium? || current_user.admin? -%>
+   <% if user_is_authorized_for_private? -%>
       <div class="form-group">
         <%= f.check_box :private %>
         <%= f.label :private %>

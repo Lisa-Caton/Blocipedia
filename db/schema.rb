@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_28_152630) do
+ActiveRecord::Schema.define(version: 2018_09_02_192912) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(version: 2018_08_28_152630) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "collaborators", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "wiki_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_collaborators_on_user_id"
+    t.index ["wiki_id"], name: "index_collaborators_on_wiki_id"
   end
 
   create_table "controllers", force: :cascade do |t|
@@ -68,6 +77,7 @@ ActiveRecord::Schema.define(version: 2018_08_28_152630) do
     t.integer "role"
     t.boolean "subscribed"
     t.string "stripeid"
+    t.string "username"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -23,12 +23,15 @@
 #----------------------------------------------------------
 
 
-# Create User
+# Create users
 5.times do
-  User.create([{
-    name: Faker::Name.name,
-  }])
+  User.create!(
+  username:  Faker::Internet.unique.user_name(6..12),
+  email:     Faker::Internet.unique.safe_email,
+  password:  Faker::Internet.password(10, 20)
+  )
 end
+users = User.all
 
 # Create Wikis
 50.times do
