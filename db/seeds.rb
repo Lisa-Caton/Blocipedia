@@ -35,7 +35,8 @@ users = User.all
 
 # Create Wikis
 50.times do
-  Wiki.create([{
+  Wiki.create!([{
+    user: users.all.sample,
     title: Faker::Seinfeld.character,
     body: Faker::Seinfeld.quote
   }])
