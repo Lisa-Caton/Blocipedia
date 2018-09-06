@@ -2,9 +2,13 @@
   <% if wiki_has_collaborators? %>
     <% @wiki.collaborators.each do |collaborator| %>
       <%= collaborator.user.username %>
-      <%= link_to "", [@collaborator], method: :delete, class: "glyphicon glyphicon-remove" %>
-      <p>This wiki doesn't have any collaborators. Click the usernames below to add some collaborators!</p>
-      <div class="form-group collaborators_list">
-      <%= form_tag collaborators_path, class: "collaborator", method: :post do  %>
+      <% if @wiki.user == current_user %>
+        <%= link_to "", [@collaborator], method: :delete, class: "glyphicon glyphicon-remove" %>
+          <p>This wiki doesn't have any collaborators. Click the usernames below to add some collaborators!</p>
+        <div class="form-group collaborators_list">
+          <%= form_tag collaborators_path, class: "collaborator", method: :post do  %>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
   <% end %>

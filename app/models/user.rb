@@ -9,6 +9,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
+ # Allow username or UserName
+  validates :username,
+  :presence => true,
+  :uniqueness => {
+    :case_sensitive => false
+  }
+
+  # Only allow letter, number, underscore and punctuation -- NOT @ -- to avoid emails as usernames
+  validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
+
   before_save { self.email = email.downcase }
   before_save { self.role ||= :standard }
 

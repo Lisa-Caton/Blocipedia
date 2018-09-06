@@ -1,7 +1,25 @@
-
-<div class="f1-edit">
-  <%= render partial: "form", locals: {wiki: @wiki} %>
-  <% if @wiki.private? && user_is_authorized_for_collaborator_edit? %>
-     <%= render partial: 'collaborator/edit_collaborators', locals: { wiki: @wiki, user: current_user } %>
-   <% end %>
+<div class="row f1-edit">
+  <div class="col-md-9">
+    <h1>Edit Wiki</h1>
+    <%= render partial: 'form', locals: { wiki: @wiki } %>
+    <% if @wiki.private? && user_is_authorized_for_collaborator_edit? %>
+      <%= render partial: 'collaborator/edit_collaborators', locals: { wiki: @wiki, user: current_user } %>
+    <% end %>
+  </div>
+  <div class="col-md-3 box-shaded">
+    <h2>Markdown</h2>
+    <small>
+      <p># large header</p>
+      <p>## medium header</p>
+      <p>### small header</p>
+      <p><strong>**bold**</strong></p>
+      <p><em>*italic*</em></p>
+      <p><mark>==highlight==</mark></p>
+      <p><span style="text-decoration: line-through">~~strike through~~</span></p>
+      <p>--- horizontal rule</p>
+      <p>`code`</p>
+      <p>Links: [linked text](https://linkurl)</p>
+      <p><%= link_to "Markdown cheatsheet", "https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet", class: "button-small" %><p>
+    </small>
+  </div>
 </div>
