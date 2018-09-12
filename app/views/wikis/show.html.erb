@@ -10,12 +10,13 @@
   <div class="row">
     <div class="col-md-12 box-shaded">
       <h4>Creator</h4>
-      <span class="glyphicon glyphicon-user"></span>
-      <%= @wiki.user.username %>
+        <span class="glyphicon glyphicon-user"></span>
+        <%= @wiki.user.username %>
+        <%= current_user.email %>
 
       <% if @wiki.private? %>
-        <h4>Collaborators</h4>
-        <%= render partial: 'collaborator/view_collaborators', locals: { wiki: @wiki, user: current_user } %>
+      <h4>Collaborators</h4>
+         <%= render partial: 'collaborators/view_collaborators', locals: { wiki: @wiki, user: current_user } %>
       <% end %>
     </div>
   </div>

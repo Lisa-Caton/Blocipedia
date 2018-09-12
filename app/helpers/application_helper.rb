@@ -14,16 +14,17 @@ module ApplicationHelper
     end
   end
 
-  def markdown(text)
-    renderer = HTMLwithPygments.new(hard_wrap: true, filter_html: true)
-    options = {
+  def markdown(content)
+    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, {
       autolink: true,
-      no_intra_emphasis: true,
+      space_after_headers: true,
       fenced_code_blocks: true,
-      lax_html_blocks: true,
-      strikethrough: true,
-      superscript: true
-    }
-    Redcarpet::Markdown.new(renderer, options).render(text).html_safe
+      disable_indented_code_blocks: true,
+      highlight: true,
+      footnotes: true,
+      tables: true
+    })
+    @markdown.render(content)
   end
+
 end

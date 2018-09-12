@@ -32,6 +32,7 @@ class WikisController < ApplicationController
 
   def edit #will automatically be authorized!!
     set_wiki
+    @users = User.all
   end
 
 
