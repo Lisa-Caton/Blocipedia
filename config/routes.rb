@@ -13,9 +13,11 @@ Rails.application.routes.draw do
 
 
 
-  resources :wikis
+  resources :wikis do
+     resources :collaborators
+   end
+
   resources :charges, only: [:new, :create]
-  resources :collaborators, only: [:create, :destroy]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

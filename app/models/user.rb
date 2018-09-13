@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  has_many :wikis
+  has_many :wikis, dependent: :destroy
   has_many :collaborators
-  has_many :collaborators, through: :collaborators, source: :wiki
+  has_many :wikis, through: :collaborators
 
 
   # Include default devise modules. Others available are:
