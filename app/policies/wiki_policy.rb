@@ -23,9 +23,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.present?
-    # user.premium? || user.admin?
-    # user.admin? if user
+    user.admin? if user
   end
 
   def new?
