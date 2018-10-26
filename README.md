@@ -1,6 +1,6 @@
 # Blocipedia
 
-##Objectives
+## Objectives
 
 *Create a basic user scheme for a Ruby on Rails application.
 
