@@ -1,24 +1,16 @@
-# README
+# Blocipedia
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##Objectives
 
-Things you may want to cover:
+*Create a basic user scheme for a Ruby on Rails application.
 
-* Ruby version
+*Give the users of a Ruby on Rails application the ability to sign up for your application using the Devise gem.
 
-* System dependencies
+*Understand how to create CRUD routes and resources in a Rails Application.
 
-* Configuration
+*Explain the difference between authentication and authorization.
 
-* Database creation
+*Integrate Stripe third party API callouts.
 
-* Database initialization
+*Integrate Redcarpet Markdown rendering gem.
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
